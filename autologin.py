@@ -14,7 +14,7 @@ driver = webdriver.Edge(executable_path="E:\\Live\\Auto Login\\msedgedriver.exe"
 # 获取Cookies
 def getCookies(relogin):
     url = "https://www.zhihuishu.com/"
-    driver.get("https://www.tsdm39.net/member.php?mod=logging&action=login")
+    driver.get("https://passport.zhihuishu.com/login?service=https://onlineservice.zhihuishu.com/login/gologin#studentID")
     while driver.current_url != url:
         pass
     try:
