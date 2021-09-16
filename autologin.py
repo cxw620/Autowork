@@ -7,7 +7,7 @@ import time
 from urllib.request import Request, urlopen
 
 from selenium import webdriver
-
+# 这里的路径需要自己修改
 driver = webdriver.Edge(executable_path="E:\\Live\\Auto Login\\msedgedriver.exe")
 
 
