@@ -13,7 +13,7 @@ driver = webdriver.Edge(executable_path="E:\\Live\\Auto Login\\msedgedriver.exe"
 
 # 获取Cookies
 def getCookies(relogin):
-    url = "https://www.zhihuishu.com/"
+    url = "https://onlineh5.zhihuishu.com/onlineWeb.html#/studentIndex"
     driver.get("https://passport.zhihuishu.com/login?service=https://onlineservice.zhihuishu.com/login/gologin#studentID")
     while driver.current_url != url:
         pass
@@ -37,7 +37,7 @@ def login():
         Cookies = pickle.load(readPath)
     except:
         getCookies(relogin=True)
-    driver.get("https://www.tsdm39.net/forum.php")
+    driver.get("https://onlineh5.zhihuishu.com/onlineWeb.html#/studentIndex")
     driver.delete_all_cookies()
     for cookie in Cookies:
         # k代表着add_cookie的参数cookie_dict中的键名，这次我们要传入这5个键
@@ -50,23 +50,16 @@ def login():
                     cookie[k] = int(t)  # 时间戳s
         # 将每一次遍历的cookie中的这五个键名和键值添加到cookie
         driver.add_cookie({k: cookie[k] for k in {'name', 'value', 'domain', 'path', 'expiry'}})
-    # 签到再说
-    sign()
-    arubaito()
-    # driver.get("https://www.tsdm39.net/forum.php")
     # 实际上，cookies可能过期。这里可能需要加上登陆状态检测
 
-
-def sign():
-    time.sleep(random.random() + 1)
-    driver.get("https://www.tsdm39.net/plugin.php?id=dsu_paulsign:sign")
-    # 下面调用一言api
-    url = "https://v1.hitokoto.cn/?c=k&min_length=3&max_length=12&encode=text&charset=utf-8"
-    firefox_headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'}
-    hitokoto = urlopen(Request(url, headers=firefox_headers)).read().decode()
+# 答题
+def answer(title):
+    # 延时操作看起来像真人一样。
+    time.sleep(random.random() + random.random())
+    
     # 程序本体
     try:
-        driver.find_element_by_id("kx").click()
+        driver.find_element_by_class_name(title).click()
         time.sleep(random.random() + 1)
         driver.find_element_by_name("todaysay").send_keys(hitokoto)
         time.sleep(random.random() + 1)
@@ -81,8 +74,8 @@ def sign():
         except:
             print("未知错误！")
 
-
-def arubaito():
+# 错误页面规避
+def jumpFault():
     time.sleep(random.random() + 1)
     driver.get("https://www.tsdm39.net/plugin.php?id=np_cliworkdz:work")
     try:
@@ -105,7 +98,12 @@ def arubaito():
         except:
             print("未知错误！")
 
-
+# 这个是选择要看的课程的名字
+def inputTitle():
+    while overTemp != true:
+        title = []
+    	temp = input("请输入你要看的课程名字")
+        title = temp.add(temp)
 login()
 driver.quit()
 # class autoOperation:
