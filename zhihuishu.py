@@ -6,7 +6,7 @@ import time
 
 from selenium import webdriver
 
-# 这里的路径需要自己修改。到官网下载好edge的webdriver后方可食用。注意，edge主程序和edge webdriver的版本须一致
+# 这里的路径需要自己修改。到官网下载好edge的webdriver后方可食用。注意，edge主程序和edge webdriver的版本须一致。路径的\需要用\转义变成\\。
 driver = webdriver.Edge(executable_path="E:\\Live\\Auto Login\\msedgedriver.exe")
 # 目前暂无手机号登录的方法，默认为0
 loginTypeIP = 0
