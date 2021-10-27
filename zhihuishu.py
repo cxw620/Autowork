@@ -1,4 +1,4 @@
-# 2021-07-05 学习浏览器程序化控制练手之作
+# 2021-10-28 学习浏览器程序化控制练手之作
 # Copyright @WENJUNXIN
 # coding:utf-8
 import random
@@ -6,11 +6,15 @@ import time
 
 from selenium import webdriver
 
-# 这里的路径需要自己修改
+# 这里的路径需要自己修改。到官网下载好edge的webdriver后方可食用。注意，edge主程序和edge webdriver的版本须一致
 driver = webdriver.Edge(executable_path="E:\\Live\\Auto Login\\msedgedriver.exe")
+# 目前暂无手机号登录的方法，默认为0
 loginTypeIP = 0
-schoolNameIP = "北京理工大学"
+# 学校名字，中文，需与智慧树系统内置的一致，分校区尤其要注意
+schoolNameIP = "*"
+# 智慧树登录的学号
 stuIDIP = "*"
+# 智慧树登录的密码
 stuPwdIP = "*"
 
 
@@ -54,7 +58,7 @@ class lesson:
 
     def boxing(self):
         try:
-            if isTips("",1):
+            if isTips("", 1):
                 self.tips("关闭学前必读成功！")
             else:
                 self.tips("关闭学前必读失败！可能不存在该窗口！")
@@ -62,7 +66,7 @@ class lesson:
             self.warn("关闭诚信提示失败！未知错误！")
         time.sleep(3)
         try:
-            if isTips("iconfont iconguanbi",1):
+            if isTips("iconfont iconguanbi", 1):
                 self.tips("关闭学前必读成功！")
             else:
                 self.tips("关闭学前必读失败！可能不存在该窗口！")
